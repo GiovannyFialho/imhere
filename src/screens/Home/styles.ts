@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   form: {
     width: "100%",
     flexDirection: "row",
-    gap: 12,
+    gap: 10,
     marginTop: 36,
     marginBottom: 42,
   },
