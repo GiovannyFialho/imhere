@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   Text,
   TextInput,
@@ -27,11 +28,19 @@ export function Home() {
   ];
 
   function handleParticipanAdd() {
-    console.log("Você clicou para adicionar");
+    if (participants.includes("Giovanny")) {
+      return Alert.alert(
+        "Participante existe",
+        "Já existe um participante na lista com esse nome"
+      );
+    }
   }
 
   function handleParticipanRemove(name: string) {
-    console.log(`Você quer remover o participante ${name}`);
+    Alert.alert("Remover", `Remover o participante ${name}`, [
+      { text: "Sim", onPress: () => Alert.alert("Deletado!") },
+      { text: "Não", style: "cancel" },
+    ]);
   }
 
   return (
@@ -63,7 +72,10 @@ export function Home() {
           </Text>
         )}
         renderItem={({ item }) => (
-          <Participant name={item} onRemove={handleParticipanRemove} />
+          <Participant
+            name={item}
+            onRemove={() => handleParticipanRemove(item)}
+          />
         )}
       />
     </View>
