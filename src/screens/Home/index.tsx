@@ -33,12 +33,9 @@ export function Home() {
       {
         text: "Sim",
         onPress: () => {
-          const newParticipantsList = participants.filter(
-            (participant) => participant !== name
+          setparticipants((prev) =>
+            prev.filter((participant) => participant !== name)
           );
-          setparticipants(newParticipantsList);
-
-          Alert.alert("Deletado!");
         },
       },
       { text: "Não", style: "cancel" },
@@ -47,9 +44,16 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.eventName}>Nome do evento</Text>
+      <Text style={styles.eventName}>Evento super</Text>
 
-      <Text style={styles.eventDate}>Sexta, 4 de Novembro de 2025</Text>
+      <Text style={styles.eventDate}>
+        {new Intl.DateTimeFormat("pt-br", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }).format(new Date())}
+      </Text>
 
       <View style={styles.form}>
         <TextInput
