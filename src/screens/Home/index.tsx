@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Alert,
   FlatList,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -17,6 +18,8 @@ export function Home() {
   const [participantName, setParticipantName] = useState<string>("");
 
   function handleParticipanAdd() {
+    Keyboard.dismiss();
+
     if (participants.includes(participantName)) {
       return Alert.alert(
         "Participante existe",
@@ -29,6 +32,8 @@ export function Home() {
   }
 
   function handleParticipanRemove(name: string) {
+    Keyboard.dismiss();
+
     Alert.alert("Remover", `Remover o participante ${name}`, [
       {
         text: "Sim",
